@@ -8,9 +8,13 @@ import fr.test.bforbank.tennis.exception.CustomException;
 public class JeuConfiguration {
 
 	public static enum Score {
-		ZERO("0"), QUINZE("15"), TRENTE("30"), QUARANTE("40"), QUARANTE_A("40-A"), GAGNE("Gagné");
+		ZERO("0"), QUINZE("15"), TRENTE("30"), QUARANTE("40"), QUARANTE_A("40-A"), GAGNE("Gagné"), PERDU("Perdu");
 
-		public String code;
+		private String code;
+
+		public String getCode() {
+			return this.code;
+		}
 
 		private Score(String code) {
 			this.code = code;
@@ -23,10 +27,11 @@ public class JeuConfiguration {
 
 		public static JoueurAyantMarque get(char value) throws CustomException {
 			for (JoueurAyantMarque joueur : JoueurAyantMarque.values()) {
-				if (joueur.toString().equals( Character.toString(value))) {
+				if (joueur.toString().equals(Character.toString(value))) {
 					return joueur;
 				}
 			}
+			System.out.println(("Erreur de valeur du joueur ayant marqué : " + value));
 			throw new CustomException("Erreur de valeur du joueur ayant marqué : " + value);
 		}
 	}
